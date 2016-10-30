@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+<!-- define angular app -->
+<html ng-app="myApp">
+
+<head>
+  <!-- SCROLLS -->
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" />
+  <!-- SPELLS -->
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/services/survayService.js"></script>
+  <script src="js/controllers/adminController.js"></script>
+  <script src="js/controllers/mainController.js"></script>
+  <script src="js/controllers/resultsController.js"></script>
+
+  <link rel="shortcut icon" href="images/favicon.ico">
+  <title>Donglić anketa</title>
+</head>
+
+<!-- define angular controller -->
+<body >
+
+  <nav    style="margin-bottom:0 "  class="navbar navbar-default">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/">Donglić anketa <i class="fa fa-check-square-o" style="color:blue"></i></a>
+      </div>
+      <ul style="visibility:hidden"  id="nav" class="nav navbar-nav navbar-right">
+        <li><a href="#"><i class="fa fa-check-circle-o"></i> Survay</a></li>
+        <li><a href="#admin"> <i class="fa fa-gears"></i> Admin</a></li>
+       
+      </ul>
+    </div>
+  </nav>
+
+  <div id="main">
+  
+    <!-- angular templating -->
+		<!-- this is where content will be injected -->
+    <div ng-view></div>
+    
+  </div>
+  
+  <footer class="text-center">
+    <p>Firmin sajt :) <a href="http://www.rt-rk.com/">RT-RK</a></p>
+  
+    
+  </footer>
+  
+</body>
+
+</html>

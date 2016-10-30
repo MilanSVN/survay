@@ -1,0 +1,41 @@
+<div class="jumbotron text-center">
+<h2><b> REZULTATI!</b> </h2>
+<p>{{message}} </p>
+
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th class="row col-sm-8">Pitanje</th>
+        <th class="row col-sm-4">Ocjena</th>
+      </tr>
+    </thead>
+    <tbody>
+	
+		<tr ng-repeat="anser in ansers" >
+			<td><h4>{{anser.quest}}</h4></td>
+			<td><h4>{{anser.value}}</h4></td>
+		</tr>
+		
+    </tbody>
+  </table>
+  <br>
+  <table class="table table-striped">
+	 <thead>
+      <tr>
+        <th class="row col-sm-12">Komentari</th>
+      </tr>
+    </thead>
+	<tbody>
+	
+		<tr ng-repeat="comment in comments" >
+			<td><h4>{{comment}}</h4></td>
+		</tr>
+		
+    </tbody>
+  </table>
+	
+
+
+
+
+</div>

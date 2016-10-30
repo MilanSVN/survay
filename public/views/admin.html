@@ -1,0 +1,46 @@
+<div class="jumbotron text-center">
+<p>{{message}} </p>
+
+<table ng-show="!sRuning" class="table table-striped">
+<thead>
+      <tr>
+        <th >Naziv ankete</th>
+      </tr>	
+	  <tr>
+		<th >
+			<input class="col-sm-12" type="text" ng-model="survayName" name="pitanje" placeholder="Naziv ankete" required>
+		</th>
+	  </tr>
+	  </thead>
+	  </table>
+
+  <table ng-show="!sRuning" class="table table-striped">
+    <thead>
+      <tr>
+        <th >Pitanje</th>
+        <th ></th>
+      </tr>
+    </thead>
+    <tbody>
+	  
+	  <tr ng-repeat="rowContent in rows">
+			<!-- <td> <h4>{{rowContent}}</h4></td> -->
+				 <td> <input class="col-sm-12"    type="text"    value="{{rowContent}}" required></td>
+				 <td><button class="tag-list btn btn-danger " ng-click="removeRow(rowContent)">Obrisi pitanje</button> </td>
+	  </tr>
+	  
+	  <tr>
+        <td>
+		<form ng-submit="addRow()">
+			<input type="text" ng-model="question" name="pitanje" class="col-sm-10" placeholder="Anketno pitanje"  >
+			</form>
+			<button class="tag-list btn btn-primary " ng-click="addRow()">Dodaj pitanje</button>
+		</td>
+
+      </tr>
+	</tbody>
+  </table>
+  <button ng-show="!sRuning" class="tag-list btn btn-success " ng-click="runSurvay()">Pokreni anketu</button>
+  <button ng-show="sRuning" class="tag-list btn btn-success " ng-click="stopSurvay()">Zaustavi anketu</button>
+	
+</div>
