@@ -1,9 +1,9 @@
-mApp.controller('resultsController', function($scope,$location,survayService) 
+mApp.controller('resultsController', function($scope,$location,surveyService) 
 {
 	// create a message to display in our view
 	$scope.message = 'Dobrodošli!';
 	
-	survayService.getServiceInfo().then(function(response)
+	surveyService.getServiceInfo().then(function(response)
 	{
 		if(response.data.run)
 		{
@@ -16,19 +16,19 @@ mApp.controller('resultsController', function($scope,$location,survayService)
 	});
 	
 	
-	survayService.getResults().then(function(response)
+	surveyService.getResults().then(function(response)
 	{
 		//console.log(response.data);
 		var ansers = [];
-		for(i = 0;i < response.data.survay.rows.length;i++)
+		for(i = 0;i < response.data.survey.rows.length;i++)
 		{
 			var temp = {};
-			temp.quest = response.data.survay.rows[i];
+			temp.quest = response.data.survey.rows[i];
 			temp.value = response.data.sum[i];
 			ansers.push(temp);
 		}
 		$scope.ansers = ansers;
-		$scope.message = response.data.survay.name;
+		$scope.message = response.data.survey.name;
 		$scope.comments = response.data.comments;
 	}).catch(
 	function(err)

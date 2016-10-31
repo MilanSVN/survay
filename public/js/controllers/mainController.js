@@ -1,10 +1,10 @@
-mApp.controller('mainController', function($scope,$location,survayService) 
+mApp.controller('mainController', function($scope,$location,surveyService) 
 {
 	// create a message to display in our view
 	$scope.message = 'Dobrodošli!';
 	$scope.admin = true;
 	
-	survayService.getServiceInfo().then(function(response)
+	surveyService.getServiceInfo().then(function(response)
 	{
 		if(response.data.admin)
 		{
@@ -23,8 +23,8 @@ mApp.controller('mainController', function($scope,$location,survayService)
 	{
 		
 	});
-//ako napravim od ovoga svega funkciju koja se poziva iz survayService.getServiceInfo() nece radi.
-		survayService.getQuestions1().then(function(response)
+//ako napravim od ovoga svega funkciju koja se poziva iz surveyService.getServiceInfo() nece radi.
+		surveyService.getQuestions1().then(function(response)
 		{
 			var questions = [];
 			for(i = 0;i < response.data.rows.length;i++)
@@ -45,7 +45,7 @@ mApp.controller('mainController', function($scope,$location,survayService)
 	
 
 	
-	$scope.submitSurvay = function()
+	$scope.submitSurvey = function()
 	{
 		$scope.submitBtn = true;
 		//console.log("Submit disabled:" + $scope.submitBtn);
@@ -57,9 +57,9 @@ mApp.controller('mainController', function($scope,$location,survayService)
 		ansers.push($scope.comment);
 		//console.log(ansers);
 		
-		survayService.setAnser(ansers).then(function(res)
+		surveyService.setAnser(ansers).then(function(res)
 		{
-			//TODO refresh page - on server should be seted that survay is anserd
+			//TODO refresh page - on server should be seted that survey is anserd
 			//console.log(res.data.status);
 			
 			if(!res.data.status)

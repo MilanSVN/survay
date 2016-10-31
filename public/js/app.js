@@ -7,7 +7,7 @@ mApp.config(function($routeProvider)
 	$routeProvider
 
 		.when('/', {
-			templateUrl : 'views/survay.html',
+			templateUrl : 'views/survey.html',
 			controller  : 'mainController'
 		})
 

@@ -1,4 +1,4 @@
-mApp.service('survayService', ['$http', function($http)
+mApp.service('surveyService', ['$http', function($http)
 {
 
 
@@ -21,16 +21,16 @@ mApp.service('survayService', ['$http', function($http)
 		return $http.get("/results");
 	}
 	
-	this.setSurvay = function(survay)
+	this.setSurvey = function(survey)
 	{
-		postBody = 	JSON.stringify(survay);
+		postBody = 	JSON.stringify(survey);
 		//console.log(postBody);
-	    return $http.post('/pNewSurvay',postBody);
+	    return $http.post('/pNewSurvey',postBody);
     };
 	
-	this.stopSurvay = function()
+	this.stopSurvey = function()
 	{
-		return $http.get("/stopSurvay");
+		return $http.get("/stopSurvey");
 	}
 	
 	this.setAnser = function(anser)

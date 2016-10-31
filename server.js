@@ -4,7 +4,7 @@ var fs = require("fs");
 
 var app = express();
 
-//TODO service info{admin,survayRuning}
+//TODO service info{admin,surveyRuning}
 
 var bodyParser = require('body-parser');
 app.use(bodyParser.json()); // support json encoded bodies
@@ -14,7 +14,7 @@ app.use(bodyParser.json()); // support json encoded bodies
 var ansers = [];
 var clientsWhoAnswered = [];
 
-var survayRuning = false;
+var surveyRuning = false;
 
 
 app.use(express.static('public'));
@@ -22,10 +22,10 @@ app.get('/', function (req, res) {
    res.sendFile( __dirname + "/" + "index.htm" );
 });
 
-//TODO make asynchronous function like in survayService
-getSurvays = function(callback)
+//TODO make asynchronous function like in surveyService
+getSurveys = function(callback)
 {
-	return fs.readFile('survays.json',callback);
+	return fs.readFile('surveys.json',callback);
 }
 
 getAnsers = function(callback)
@@ -34,14 +34,14 @@ getAnsers = function(callback)
 }
 
 app.get('/questions', function (req, res) {
-	getSurvays(function (err, data) 
+	getSurveys(function (err, data) 
 	{
 	   if (err) {
 		  res.end(JSON.stringify(err));//MB
 		  return console.error(err);
 	   }
-		var survaysData = JSON.parse(data);
-		res.end(JSON.stringify(survaysData.survays[survaysData.survays.length - 1]));
+		var surveysData = JSON.parse(data);
+		res.end(JSON.stringify(surveysData.surveys[surveysData.surveys.length - 1]));
 	});
 });
 
@@ -70,32 +70,32 @@ app.get('/serviceInfo', function (req, res) {
 	
 	var serviceInfo = {};
 	serviceInfo.admin = isAdmin(req);
-	serviceInfo.run = survayRuning;
+	serviceInfo.run = surveyRuning;
 	//console.log(JSON.stringify(serviceInfo.admin));
 	res.end(JSON.stringify(serviceInfo));
 });
 
-app.get('/stopSurvay', function (req, res) {
+app.get('/stopSurvey', function (req, res) {
 	var jsonMsg = {};
 	//TODO add checking isAdmin
-	survayRuning = false;
+	surveyRuning = false;
 	var curentResults = {};
 	
-	getSurvays(function (err, data,getAnsers) 
+	getSurveys(function (err, data,getAnsers) 
 	{
 	   if (err) {
 		  res.end(JSON.stringify(err));//MB
 		  return console.error(err);
 	   }
-	var survaysData = JSON.parse(data);
-	curentResults.survay = survaysData.survays[survaysData.survays.length - 1];
-	//console.log(curentResults.survay);
+	var surveysData = JSON.parse(data);
+	curentResults.survey = surveysData.surveys[surveysData.surveys.length - 1];
+	//console.log(curentResults.survey);
 	
 	var sum =  [];
 	sum[0] = Number(0);
 	var comments = [];
 	comments[0] = "";
-	for(i = 0;i <curentResults.survay.rows.length;i++)
+	for(i = 0;i <curentResults.survey.rows.length;i++)
 	{
 		sum[i] = Number(0); //:@ 
 		for(j = 0;j < ansers.length;j++)
@@ -116,8 +116,8 @@ app.get('/stopSurvay', function (req, res) {
 	for(j = 0;j < ansers.length;j++)
 	{
 		comments[j] = "";
-		comments[j] = (ansers[j][curentResults.survay.rows.length]);	
-		//console.log("KOMENTAR : " + ansers[j][curentResults.survay.rows.length]);
+		comments[j] = (ansers[j][curentResults.survey.rows.length]);	
+		//console.log("KOMENTAR : " + ansers[j][curentResults.survey.rows.length]);
 	}
 	
 	curentResults.sum = sum;
@@ -135,7 +135,7 @@ app.get('/stopSurvay', function (req, res) {
 				}
 			});
 	   
-			survayRuning = false;
+			surveyRuning = false;
 			clientsWhoAnswered = [];
 			ansers = [];
 			jsonMsg.status = true;
@@ -147,15 +147,15 @@ app.get('/stopSurvay', function (req, res) {
 	//res.end();
 });
 
-app.post('/pNewSurvay', function (req, res) {
+app.post('/pNewSurvey', function (req, res) {
 	var jsonMsg = {};
-	if(survayRuning)
+	if(surveyRuning)
 	{
 		jsonMsg.status = false;
 		res.json(jsonMsg);
 		return res.end();
 	}
-	getSurvays(function (err, data) 
+	getSurveys(function (err, data) 
 	{
 	   if (err) {
 			console.log(JSON.stringify(err));//MB
@@ -163,12 +163,12 @@ app.post('/pNewSurvay', function (req, res) {
 			res.json(jsonMsg);
 			return res.end();
 	   }
-		survaysData = JSON.parse(data);
-		var newSurvay = req.body;
-		survaysData.survays.push(newSurvay);
-		//console.log(JSON.stringify(survaysData.survays));
+		surveysData = JSON.parse(data);
+		var newSurvey = req.body;
+		surveysData.surveys.push(newSurvey);
+		//console.log(JSON.stringify(surveysData.surveys));
 		
-		fs.writeFile('survays.json', JSON.stringify(survaysData),  function(err) 
+		fs.writeFile('surveys.json', JSON.stringify(surveysData),  function(err) 
 		{
 			if (err) {
 				console.log(JSON.stringify(err));//MB
@@ -178,7 +178,7 @@ app.post('/pNewSurvay', function (req, res) {
 			}
 		});
    
-		survayRuning = true;
+		surveyRuning = true;
 		clientsWhoAnswered = [];
 		ansers = [];
 		jsonMsg.status = true;

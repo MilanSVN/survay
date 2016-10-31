@@ -1,10 +1,10 @@
-mApp.controller('adminController',function($scope, $location ,survayService) 
+mApp.controller('adminController',function($scope, $location ,surveyService) 
 {
 	$scope.message = "Kreiraj novu akretu!";
 	
 	//$scope.rows;
 	
-	survayService.getServiceInfo().then(function(response)
+	surveyService.getServiceInfo().then(function(response)
 	{
 		if(response.data.admin)
 		{
@@ -24,7 +24,7 @@ mApp.controller('adminController',function($scope, $location ,survayService)
 	});
 	
 	
-	survayService.getQuestions().then(function(response)
+	surveyService.getQuestions().then(function(response)
 	{
 		//console.log(angular.toJson(response.data.rows));
 		$scope.rows = response.data.rows;
@@ -37,24 +37,38 @@ mApp.controller('adminController',function($scope, $location ,survayService)
 	$scope.addRow = function() 
 	{
 		if(!$scope.question) return;
-		console.log($scope.question);
+		//console.log($scope.question);
 	if (!~$scope.rows.indexOf($scope.question))
 		$scope.rows.push($scope.question);
 	else alert("Ovo pitanje vec postoji!");
 	$scope.question='';
 	}
 	
-	$scope.runSurvay = function()
+	
+	$scope.runSurvey = function()
 	{
-		if(!$scope.survayName) return alert("Morate unjeti naziv ankete!");
+		if(!$scope.surveyName) return alert("Morate unjeti naziv ankete!");
 		if($scope.rows.length === 0 )return alert("Anketa mora imati makar jedno pitanje!");
-		//TODO check if rows is empty, if thay bean deleted
 		//console.log("test");
-		var survay = {name:"prviTest",rows:[]};
-		survay.name =  $scope.survayName;
-		survay.rows = $scope.rows;
-		//console.log(survay);
-		survayService.setSurvay(survay).then(function()
+		var survey = {name:"prviTest",rows:[]};
+		survey.name =  $scope.surveyName;
+		survey.rows = $scope.rows;
+
+		for(i = 0;i < survey.rows.length;i++)
+		{
+			if(survey.rows[i] == null)
+			{
+				alert("Nije dozvoljeno postavljati prazna pitanja! " + Number(Number(i)+Number(1)) + ". pitanje je prazno.");
+				return;
+			}
+			if(survey.rows.indexOf(survey.rows[i]) != i)
+			{
+				alert("Nije dozvoljeno unositi ista pitanja!");
+				return;
+			}
+		}
+		//console.log($scope.rows);
+		surveyService.setSurvey(survey).then(function()
 		{
 			//TODO zamrzni kreiranje nove akete i omoguci zaustavljanje ankete
 			$scope.sRuning = true;
@@ -66,9 +80,9 @@ mApp.controller('adminController',function($scope, $location ,survayService)
 		});
 	}
 	
-	$scope.stopSurvay = function()
+	$scope.stopSurvey = function()
 	{
-		survayService.stopSurvay().then(function()
+		surveyService.stopSurvey().then(function()
 		{
 			$location.path( "/results" )
 		}).catch(function(err)
@@ -81,7 +95,7 @@ mApp.controller('adminController',function($scope, $location ,survayService)
 	$scope.removeRow = function(name){				
 		var pom = $scope.rows.indexOf(name);
 		$scope.rows.splice( pom, 1 );
-			console.log($scope.rows);
+			//console.log($scope.rows);
 	};
 	
 	
