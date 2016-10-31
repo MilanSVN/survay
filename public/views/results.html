@@ -27,7 +27,7 @@
     </thead>
 	<tbody>
 	
-		<tr ng-repeat="comment in comments" >
+		<tr ng-repeat="comment in comments track by $index" >
 			<td><h4>{{comment}}</h4></td>
 		</tr>
 		

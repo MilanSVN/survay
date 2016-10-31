@@ -13,4 +13,17 @@
 	},
 	"sum" : [3, 3, 3, 3],
 	"comments" : [" prvi komentar ", " Drugi komentar!"]}
-|!|{"survay":{"name":"Prva testna tabela","rows":["Prvo pitanje","Druigo pitanje","Trece pitanje","Obrisano pitanje","prvo poslije treceg"]},"sum":[4,2,2,3,1],"comments":[null,"Komentar"]}|!|{"survay":{"name":"Druga testna anketa","rows":["Prvo pitanje","Druigo pitanje","Trece pitanje","prvo poslije treceg","peto pitanje"]},"sum":[2.5,1,2,2.5,3],"comments":["Komentar!",null]}|!|{"survay":{"name":"Treca testna","rows":["Prvo pitanje","Druigo pitanje","Trece pitanje","prvo poslije treceg","peto pitanje"]},"sum":[5,5,5,5,5],"comments":["Pozdrav"]}|!|{"survay":{"name":"ccc","rows":["Prvo od ccc"]},"sum":[null],"comments":[""]}
+|!|{"survay":{"name":"Prva testna tabela",
+"rows":["Prvo pitanje","Druigo pitanje","Trece pitanje","Obrisano pitanje","prvo poslije treceg"]},
+"sum":[4,2,2,3,1],
+"comments":[null,"Komentar"]}|!|
+{"survay":{"name":"Druga testna anketa",
+"rows":["Prvo pitanje","Druigo pitanje","Trece pitanje","prvo poslije treceg","peto pitanje"]},
+"sum":[2.5,1,2,2.5,3],
+"comments":["Komentar!",null]}|!|
+{"survay":{"name":"Treca testna",
+"rows":["Prvo pitanje","Druigo pitanje","Trece pitanje","prvo poslije treceg","peto pitanje"]},
+"sum":[5,5,5,5,5],"comments":["Pozdrav"]}|!|{"survay":{"name":"ccc","rows":["Prvo od ccc"]},
+"sum":[null],"comments":[""]}|!|{"survay":{"name":"Prva Donglić anketa",
+"rows":["Da li Vam je žao što se kengur vratio?","Da li mislite da će Šabić pasti javu?"]},
+"sum":[2.2,1.6],"comments":[null,"Bra'o","Pozdrav kreatorima","Ja neču senku nego čoveka",null]}
