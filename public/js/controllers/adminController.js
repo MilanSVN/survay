@@ -47,7 +47,7 @@ mApp.controller('adminController',function($scope, $location ,surveyService)
 	
 	$scope.runSurvey = function()
 	{
-		if($scope.question != "") return alert("Novi pitanje nije snimljeno. Snimite ga ili obrišite njegov sadržaj!");
+		if($scope.question != "") return alert("Novio pitanje nije snimljeno. Snimite ga ili obrišite njegov sadržaj!");
 		if(!$scope.surveyName) return alert("Morate unjeti naziv ankete!");
 		if($scope.rows.length === 0 )return alert("Anketa mora imati makar jedno pitanje!");
 		//console.log("test");
