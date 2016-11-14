@@ -34,6 +34,8 @@ mApp.controller('adminController',function($scope, $location ,surveyService)
 		console.log(err);
 	});
   
+  
+  
 	$scope.addRow = function() 
 	{
 		if(!$scope.question) return;
@@ -47,7 +49,7 @@ mApp.controller('adminController',function($scope, $location ,surveyService)
 	
 	$scope.runSurvey = function()
 	{
-		if($scope.question != "") return alert("Novo pitanje nije snimljeno. Snimite ga ili obrišite njegov sadržaj!");
+		if($scope.question) return alert("Novo pitanje nije snimljeno. Snimite ga ili obrišite njegov sadržaj!");
 		if(!$scope.surveyName) return alert("Morate unjeti naziv ankete!");
 		if($scope.rows.length === 0 )return alert("Anketa mora imati makar jedno pitanje!");
 		//console.log("test");
